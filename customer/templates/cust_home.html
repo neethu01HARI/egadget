@@ -1,0 +1,113 @@
+{% extends 'navbar.html'%}
+{% block content %}
+
+  <style>
+      *,
+      *:before,
+      *:after{
+      padding: 0;
+      margin: 0;
+      
+      }
+      body{
+        background-image: radial-gradient(circle,indigo,white,violet,indigo);
+        
+        /* background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);} */
+      }
+      .row{
+      margin: 100px;
+      
+      
+      }
+      h1{
+        background-color: rgb(179, 165, 249) ;
+        align-self: center;
+        color: rgb(0, 0, 77);
+        height: 70px;
+        /* margin-left: 300px;   
+        margin-right: 300px; */
+        text-align: center;     
+      }
+      h2{
+        color: blanchedalmond;
+        margin-top: 20px;
+      }
+      .card{
+        margin: 20px;
+        border-radius: 10px;
+      }
+      p{
+        font-style: italic;
+        color: blue;
+      }
+  </style>
+ 
+
+      <!-- <h3>Customer</h3>
+      {% for i in products %}
+      <p>{{i}}</p>
+      {%endfor%} -->
+        <h1 >
+            <span class="material-symbols-outlined">
+            smartphone
+            </span>
+            <span class="material-symbols-outlined">
+              headphones
+              </span>
+              <span class="material-symbols-outlined">
+                speaker
+                </span>
+                
+         
+            e-GADGETS
+
+            <span class="material-symbols-outlined">
+              tablet
+              </span>
+              <span class="material-symbols-outlined">
+                watch_screentime
+                </span>
+                <span class="material-symbols-outlined">
+                  laptop_windows
+                  </span>
+        </h1>
+        
+        <h2>
+          Welcome......  <i>{{request.user.first_name}} {{request.user.last_name}}</i>
+        </h2>
+        {% if messages %}
+          {% for i in messages %}
+          {% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+              <div class="alert alert-success">
+              {{i}}
+              </div>
+          {%endif%}
+          {% if i.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+              <div class="alert alert-danger">
+              {{i}}
+              </div>
+          {%endif%}
+          {%endfor%}
+        {%endif%}
+        <div class="row">
+          {% for i in products %}
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" height="250px" width="200px" src="{{i.image.url}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{i.name}}</h5>
+              <p class="card-text">{{i.category}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <!-- <li class="list-group-item">Cras justo odio</li> -->
+              <!-- <li class="list-group-item">{{i.description}}</li> -->
+              <!-- <li class="list-group-item">Rs:{{i.price}}</li> -->
+            </ul>
+            <div class="card-body">
+              <a href="{% url 'pdet' i.id %}" class="card-link btn btn-warning">View More</a>
+              <!-- <a href="#" class="card-link">Another link</a> -->
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+
+{% endblock content %}
